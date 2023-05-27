@@ -1,5 +1,7 @@
 import { Text } from 'react-native';
 
-const HomeScreen = () => <Text>Home</Text>;
+import { PropsWithString, withTranslation } from '@i18n';
 
-export default HomeScreen;
+const HomeScreen = ({ string }: PropsWithString) => <Text>{string.home.title}</Text>;
+
+export default withTranslation(HomeScreen);

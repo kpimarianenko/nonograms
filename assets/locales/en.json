@@ -1,0 +1,13 @@
+{
+  "authorization": {
+    "login": {
+      "title": "Login"
+    },
+    "register": {
+      "title": "Register"
+    }
+  },
+  "home": {
+    "title": "Nonograms"
+  }
+}

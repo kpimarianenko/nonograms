@@ -1,0 +1,13 @@
+{
+  "authorization": {
+    "login": {
+      "title": "Авторизація"
+    },
+    "register": {
+      "title": "Реєстрація"
+    }
+  },
+  "home": {
+    "title": "Японські кросворди"
+  }
+}

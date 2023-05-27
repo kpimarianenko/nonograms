@@ -20,6 +20,7 @@ module.exports = {
   ],
   rules: {
     'react/prop-types': 'off',
+    'react/display-name': 'off',
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     'no-console': 'warn',
@@ -92,6 +93,11 @@ module.exports = {
           },
           {
             pattern: '@assets/**',
+            group: 'internal',
+            position: 'after'
+          },
+          {
+            pattern: '@i18n',
             group: 'internal',
             position: 'after'
           },

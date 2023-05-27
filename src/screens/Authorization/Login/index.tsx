@@ -1,5 +1,9 @@
 import { Text } from 'react-native';
 
-const LoginScreen = () => <Text>Login</Text>;
+import { PropsWithString, withTranslation } from '@i18n';
 
-export default LoginScreen;
+const LoginScreen = ({ string }: PropsWithString) => (
+  <Text>{string.authorization.login.title}</Text>
+);
+
+export default withTranslation(LoginScreen);

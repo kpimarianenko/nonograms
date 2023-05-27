@@ -1,5 +1,9 @@
 import { Text } from 'react-native';
 
-const RegisterScreen = () => <Text>Register</Text>;
+import { PropsWithString, withTranslation } from '@i18n';
 
-export default RegisterScreen;
+const RegisterScreen = ({ string }: PropsWithString) => (
+  <Text>{string.authorization.register.title}</Text>
+);
+
+export default withTranslation(RegisterScreen);
