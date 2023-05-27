@@ -4,7 +4,7 @@ import AppStackNavigator from '@navigation/AppStackNavigator';
 
 const App = () => (
   <NavigationContainer>
-    <AppStackNavigator isAuthenticated={false} />
+    <AppStackNavigator isAuthorized={false} />
   </NavigationContainer>
 );
 

@@ -2,19 +2,19 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { RouteName } from '@navigation/types';
 
-import LoginScreen from '@screens/Authentication/Login';
-import RegisterScreen from '@screens/Authentication/Register';
+import LoginScreen from '@screens/Authorization/Login';
+import RegisterScreen from '@screens/Authorization/Register';
 import HomeScreen from '@screens/Home';
 
 interface AppStackNavigatorProps {
-  isAuthenticated: boolean;
+  isAuthorized: boolean;
 }
 
 const Stack = createNativeStackNavigator();
 
-const AppStackNavigator = ({ isAuthenticated }: AppStackNavigatorProps) => (
+const AppStackNavigator = ({ isAuthorized }: AppStackNavigatorProps) => (
   <Stack.Navigator>
-    {isAuthenticated ? (
+    {isAuthorized ? (
       <>
         <Stack.Screen name={RouteName.Home} component={HomeScreen} />
       </>
