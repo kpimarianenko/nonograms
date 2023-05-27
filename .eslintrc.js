@@ -11,7 +11,7 @@ module.exports = {
       jsx: true
     }
   },
-  plugins: ['@typescript-eslint', 'prettier', 'react', 'react-native', 'react-hooks'],
+  plugins: ['@typescript-eslint', 'prettier', 'react', 'react-native', 'react-hooks', 'import'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -37,15 +37,79 @@ module.exports = {
       'error',
       { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' }
     ],
+    'react/self-closing-comp': ['error', { component: true }],
     'padding-line-between-statements': [
       'error',
       { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
       { blankLine: 'any', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var'] }
+    ],
+    'sort-imports': ['error', { ignoreCase: true, ignoreDeclarationSort: true }],
+    'import/order': [
+      'warn',
+      {
+        groups: [['external', 'builtin'], 'internal', ['sibling', 'parent'], 'index'],
+        pathGroupsExcludedImportTypes: ['react'],
+        'newlines-between': 'always',
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true
+        },
+        pathGroups: [
+          {
+            pattern: '@(react|react-native)',
+            group: 'external',
+            position: 'before'
+          },
+          {
+            pattern: '@components/**',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@screens/**',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@services/**',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@helpers/**',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@hooks/**',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@assets/**',
+            group: 'internal',
+            position: 'after'
+          },
+          {
+            pattern: './styles',
+            group: 'sibling',
+            position: 'after'
+          }
+        ]
+      }
     ]
   },
   settings: {
     react: {
       version: 'detect'
+    },
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx']
+    },
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true
+      }
     }
   }
 };

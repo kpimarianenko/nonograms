@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
+      "@assets/*": ["./assets/*"],
       "@components/*": ["./src/components/*"],
       "@helpers/*": ["./src/helpers/*"],
       "@hooks/*": ["./src/hooks/*"],
@@ -22,5 +23,5 @@
     "jsx": "react-jsx"
   },
   "extends": "@tsconfig/react-native/tsconfig.json",
-  "include": ["src", "src/screens/Home/App.tsx", "App.tsx"]
+  "include": ["src", "__tests__", "index.ts", "App.tsx"]
 }
