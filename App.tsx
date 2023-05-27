@@ -1,5 +1,11 @@
-import { Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
-const App: React.FC = () => <Text>Hello World!</Text>;
+import AppStackNavigator from '@navigation/AppStackNavigator';
+
+const App = () => (
+  <NavigationContainer>
+    <AppStackNavigator isAuthenticated={false} />
+  </NavigationContainer>
+);
 
 export default App;

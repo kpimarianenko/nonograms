@@ -66,6 +66,11 @@ module.exports = {
             position: 'before'
           },
           {
+            pattern: '@navigation/**',
+            group: 'internal',
+            position: 'before'
+          },
+          {
             pattern: '@screens/**',
             group: 'internal',
             position: 'before'
