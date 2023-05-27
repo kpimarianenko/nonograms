@@ -62,6 +62,11 @@ module.exports = {
             position: 'before'
           },
           {
+            pattern: '@storage',
+            group: 'internal',
+            position: 'before'
+          },
+          {
             pattern: '@components/**',
             group: 'internal',
             position: 'before'

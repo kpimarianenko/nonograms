@@ -1,5 +1,8 @@
-import { createContext, PropsWithChildren, useMemo, useState } from 'react';
+import { createContext, PropsWithChildren, useMemo } from 'react';
 
+import { useStorage } from '@storage';
+
+import { localeCodeStorageKey } from './constants';
 import { getTranslation } from './helpers';
 import locales from './locales';
 import { LocaleCode, Translation } from './types';
@@ -19,7 +22,7 @@ export const I18Context = createContext<I18ContextValue>({
 });
 
 export const I18Provider = ({ children }: PropsWithChildren) => {
-  const [localeCode, changeLocale] = useState<LocaleCode>('en');
+  const [localeCode, changeLocale] = useStorage<LocaleCode>(localeCodeStorageKey, 'en');
   const string = useMemo(() => getTranslation(localeCode), [localeCode]);
 
   return (

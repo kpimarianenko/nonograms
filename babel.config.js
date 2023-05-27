@@ -12,7 +12,8 @@ module.exports = {
           '@i18n': './src/i18n',
           '@navigation': './src/navigation',
           '@screens': './src/screens',
-          '@services': './src/services'
+          '@services': './src/services',
+          '@storage': './src/storage'
         }
       }
     ]
