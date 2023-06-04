@@ -1,7 +1,17 @@
 {
   "authorization": {
     "login": {
-      "title": "Авторизація"
+      "title": "З поверненням!",
+      "subtitle": "Увійдіть до свого акаунту",
+      "form": {
+        "username": "Ім'я користувача",
+        "password": "Пароль",
+        "rememberMe": "Запам'ятати мене",
+        "forgotPassword": "Забули пароль?",
+        "submit": "Увійти"
+      },
+      "noAccountMessage": "Не маєте акаунту?",
+      "signUp": "Зареєструватися"
     },
     "register": {
       "title": "Реєстрація"

@@ -1,4 +1,4 @@
-import { Text } from 'react-native';
+import Text from '@components/Text';
 
 import { PropsWithString, withTranslation } from '@i18n';
 

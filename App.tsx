@@ -1,6 +1,7 @@
-import { NavigationContainer } from '@react-navigation/native';
+import 'react-native-gesture-handler';
 
 import AppStackNavigator from '@navigation/AppStackNavigator';
+import NavigationContainer from '@navigation/NavigationContainer';
 
 import { I18Provider } from '@i18n';
 

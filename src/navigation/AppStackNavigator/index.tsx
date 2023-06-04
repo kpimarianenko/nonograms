@@ -1,4 +1,4 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import { RouteName } from '@navigation/types';
 
@@ -10,10 +10,10 @@ interface AppStackNavigatorProps {
   isAuthorized: boolean;
 }
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 const AppStackNavigator = ({ isAuthorized }: AppStackNavigatorProps) => (
-  <Stack.Navigator>
+  <Stack.Navigator screenOptions={{ headerShown: false }}>
     {isAuthorized ? (
       <>
         <Stack.Screen name={RouteName.Home} component={HomeScreen} />

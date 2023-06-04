@@ -1,7 +1,17 @@
 {
   "authorization": {
     "login": {
-      "title": "Login"
+      "title": "Welcome Back!",
+      "subtitle": "Login to your account",
+      "form": {
+        "username": "Username",
+        "password": "Password",
+        "rememberMe": "Remember me",
+        "forgotPassword": "Forgot Password?",
+        "submit": "Login"
+      },
+      "noAccountMessage": "Don't have an account?",
+      "signUp": "Sign Up"
     },
     "register": {
       "title": "Register"
