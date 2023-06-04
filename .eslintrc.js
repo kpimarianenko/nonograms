@@ -99,7 +99,12 @@ module.exports = {
           {
             pattern: '@assets/**',
             group: 'internal',
-            position: 'after'
+            position: 'before'
+          },
+          {
+            pattern: '@(@theme|@theme/**)',
+            group: 'internal',
+            position: 'before'
           },
           {
             pattern: '@i18n',

@@ -22,7 +22,10 @@ export const I18Context = createContext<I18ContextValue>({
 });
 
 export const I18Provider = ({ children }: PropsWithChildren) => {
-  const [localeCode, changeLocale] = useStorage<LocaleCode>(localeCodeStorageKey, 'en');
+  const [localeCode, changeLocale] = useStorage<LocaleCode>(
+    localeCodeStorageKey,
+    defaultLocaleCode
+  );
   const string = useMemo(() => getTranslation(localeCode), [localeCode]);
 
   return (
