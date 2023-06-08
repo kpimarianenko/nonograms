@@ -3,7 +3,7 @@ import { useLocale, useTranslation } from './hooks';
 import { LocaleCode, PropsWithString } from './types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type ComponentWithTranslation = React.ComponentType<any>;
+type ComponentWithTranslation = React.ComponentType<PropsWithString<any>>;
 
 export const withTranslation =
   (Component: ComponentWithTranslation) =>
