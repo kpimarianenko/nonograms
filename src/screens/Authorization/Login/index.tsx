@@ -9,13 +9,17 @@ import Input from '@components/Input';
 import Link from '@components/Link';
 import Text from '@components/Text';
 
+import { RouteName, ScreenProps } from '@navigation/types';
+
 import baseStyles from '@theme/styles';
 
 import { PropsWithString, withTranslation } from '@i18n';
 
 import styles from './styles';
 
-const LoginScreen = ({ string }: PropsWithString) => {
+type LoginScreenProps = PropsWithString<ScreenProps<RouteName.Login>>;
+
+const LoginScreen = ({ navigation, string }: LoginScreenProps) => {
   const [rememberMe, setRememberMe] = useState(false);
 
   return (
@@ -51,7 +55,10 @@ const LoginScreen = ({ string }: PropsWithString) => {
       <Button style={styles.button} title={string.authorization.login.form.submit} />
       <View style={baseStyles.rowSpaceBetween}>
         <Text>{string.authorization.login.noAccountMessage}</Text>
-        <Link title={string.authorization.login.signUp} />
+        <Link
+          title={string.authorization.login.signUp}
+          onPress={() => navigation.navigate(RouteName.Register)}
+        />
       </View>
     </View>
   );

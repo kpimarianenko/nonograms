@@ -2,8 +2,11 @@ import { I18Provider } from './context';
 import { useLocale, useTranslation } from './hooks';
 import { LocaleCode, PropsWithString } from './types';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type ComponentWithTranslation = React.ComponentType<any>;
+
 export const withTranslation =
-  (Component: React.ComponentType<PropsWithString>) =>
+  (Component: ComponentWithTranslation) =>
   ({ ...props }) => {
     const string = useTranslation();
 

@@ -1,6 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { RouteName } from '@navigation/types';
+import { AppStackParams, RouteName } from '@navigation/types';
 
 import LoginScreen from '@screens/Authorization/Login';
 import RegisterScreen from '@screens/Authorization/Register';
@@ -10,7 +10,7 @@ interface AppStackNavigatorProps {
   isAuthorized: boolean;
 }
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<AppStackParams>();
 
 const AppStackNavigator = ({ isAuthorized }: AppStackNavigatorProps) => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
