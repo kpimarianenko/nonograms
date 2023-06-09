@@ -9,6 +9,9 @@ const baseStyles = StyleSheet.create({
   text: {
     color: theme.text.base
   },
+  textAlignCenter: {
+    textAlign: 'center'
+  },
   rowSpaceBetween: {
     flexDirection: 'row',
     justifyContent: 'space-between',

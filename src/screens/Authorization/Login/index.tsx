@@ -15,6 +15,8 @@ import baseStyles from '@theme/styles';
 
 import { PropsWithString, withTranslation } from '@i18n';
 
+import authStyles from '../styles';
+
 import styles from './styles';
 
 type LoginScreenProps = PropsWithString<ScreenProps<RouteName.Login>>;
@@ -23,20 +25,20 @@ const LoginScreen = ({ navigation, string }: LoginScreenProps) => {
   const [rememberMe, setRememberMe] = useState(false);
 
   return (
-    <View style={styles.root}>
-      <View style={styles.container}>
-        <View style={styles.form}>
-          <Text style={styles.title}>{string.authorization.login.title}</Text>
-          <Text style={styles.subtitle}>{string.authorization.login.subtitle}</Text>
+    <View style={authStyles.root}>
+      <View style={authStyles.container}>
+        <View style={authStyles.form}>
+          <Text style={authStyles.title}>{string.authorization.login.title}</Text>
+          <Text style={authStyles.subtitle}>{string.authorization.login.subtitle}</Text>
           <Input
             icon={faUser}
             placeholder={string.authorization.login.form.username}
-            containerStyle={styles.input}
+            containerStyle={authStyles.input}
           />
           <Input
             icon={faLock}
             placeholder={string.authorization.login.form.password}
-            containerStyle={styles.input}
+            containerStyle={authStyles.input}
           />
           <View style={styles.formFooter}>
             <Checkbox
@@ -52,7 +54,7 @@ const LoginScreen = ({ navigation, string }: LoginScreenProps) => {
           </View>
         </View>
       </View>
-      <Button style={styles.button} title={string.authorization.login.form.submit} />
+      <Button style={authStyles.button} title={string.authorization.login.form.submit} />
       <View style={baseStyles.rowSpaceBetween}>
         <Text>{string.authorization.login.noAccountMessage}</Text>
         <Link

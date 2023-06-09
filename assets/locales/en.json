@@ -14,7 +14,18 @@
       "signUp": "Sign Up"
     },
     "register": {
-      "title": "Register"
+      "title": "Register",
+      "subtitle": "Create your account",
+      "form": {
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "repeatPassword": "Repeat password",
+        "note": "By registering, you are agreeing to our Terms of use and Privacy Policy",
+        "submit": "Register"
+      },
+      "haveAccountMessage": "Already have an account?",
+      "signIn": "Login"
     }
   },
   "home": {
