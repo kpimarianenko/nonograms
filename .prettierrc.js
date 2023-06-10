@@ -2,6 +2,6 @@ module.exports = {
   printWidth: 100,
   arrowParens: 'avoid',
   singleQuote: true,
-  jsxSingleQuote: true,
+  jsxSingleQuote: false,
   trailingComma: 'none'
 };
