@@ -9,8 +9,12 @@ interface ButtonProps extends TouchableOpacityProps {
   titleStyle?: StyleProp<TextStyle>;
 }
 
-const Button = ({ title, titleStyle, style, ...props }: ButtonProps) => (
-  <TouchableOpacity style={[styles.container, style]} {...props}>
+const Button = ({ title, disabled, titleStyle, style, ...props }: ButtonProps) => (
+  <TouchableOpacity
+    style={[styles.container, style, disabled && styles.disabledContainer]}
+    disabled={disabled}
+    {...props}
+  >
     <Text style={[styles.title, titleStyle]}>{title}</Text>
   </TouchableOpacity>
 );

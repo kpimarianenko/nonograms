@@ -24,7 +24,7 @@ const authStyles = StyleSheet.create({
     alignItems: 'center'
   },
   input: {
-    marginVertical: 10
+    marginBottom: 5
   },
   button: {
     marginBottom: 5

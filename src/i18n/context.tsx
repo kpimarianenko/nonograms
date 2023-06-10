@@ -13,7 +13,7 @@ interface I18ContextValue {
   changeLocale: React.Dispatch<React.SetStateAction<LocaleCode>>;
 }
 
-const defaultLocaleCode = 'en';
+const defaultLocaleCode = 'ua';
 
 export const I18Context = createContext<I18ContextValue>({
   string: locales[defaultLocaleCode],

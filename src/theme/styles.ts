@@ -12,6 +12,9 @@ const baseStyles = StyleSheet.create({
   textAlignCenter: {
     textAlign: 'center'
   },
+  row: {
+    flexDirection: 'row'
+  },
   rowSpaceBetween: {
     flexDirection: 'row',
     justifyContent: 'space-between',

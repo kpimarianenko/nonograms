@@ -107,6 +107,11 @@ module.exports = {
             position: 'before'
           },
           {
+            pattern: '@constants/**',
+            group: 'internal',
+            position: 'before'
+          },
+          {
             pattern: '@i18n',
             group: 'internal',
             position: 'after'

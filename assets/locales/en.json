@@ -17,10 +17,37 @@
       "title": "Register",
       "subtitle": "Create your account",
       "form": {
-        "username": "Username",
-        "email": "Email",
-        "password": "Password",
-        "repeatPassword": "Repeat password",
+        "username": {
+          "label": "Username",
+          "errors": {
+            "required": "Username is required",
+            "min": "Username is too short",
+            "max": "Username is too long",
+            "matches": "Username must contain only latin letters, numbers and an underscore"
+          }
+        },
+        "email": {
+          "label": "Email",
+          "errors": {
+            "required": "Email is required",
+            "matches": "Enter a valid email"
+          }
+        },
+        "password": {
+          "label": "Password",
+          "errors": {
+            "required": "Password is required",
+            "min": "Password is too short",
+            "max": "Password is too long"
+          }
+        },
+        "repeatPassword": {
+          "label": "Repeat password",
+          "errors": {
+            "required": "Repeat password field is required",
+            "oneOf": "Passwords don't match"
+          }
+        },
         "note": "By registering, you are agreeing to our Terms of use and Privacy Policy",
         "submit": "Register"
       },

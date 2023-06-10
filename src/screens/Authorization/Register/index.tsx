@@ -1,6 +1,8 @@
-import { View } from 'react-native';
+import { TextInputProps, View } from 'react-native';
 
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+import { FormikProps, withFormik } from 'formik';
 
 import Button from '@components/Button';
 import Input from '@components/Input';
@@ -13,48 +15,102 @@ import baseStyles from '@theme/styles';
 
 import { PropsWithString, withTranslation } from '@i18n';
 
+import { FormValues, validationSchema } from './validation';
 import authStyles from '../styles';
 
-type RegisterScreenProps = PropsWithString<ScreenProps<RouteName.Register>>;
+interface InputData {
+  name: keyof FormValues;
+  icon: IconDefinition;
+  keyboardType?: TextInputProps['keyboardType'];
+  secureTextEntry?: boolean;
+}
 
-const RegisterScreen = ({ navigation, string }: RegisterScreenProps) => (
-  <View style={authStyles.root}>
-    <View style={authStyles.container}>
-      <View style={authStyles.form}>
-        <Text style={authStyles.title}>{string.authorization.register.title}</Text>
-        <Text style={authStyles.subtitle}>{string.authorization.register.subtitle}</Text>
-        <Input
-          icon={faUser}
-          placeholder={string.authorization.register.form.username}
-          containerStyle={authStyles.input}
+const inputs: Array<InputData> = [
+  {
+    name: 'username',
+    icon: faUser
+  },
+  {
+    name: 'email',
+    icon: faEnvelope,
+    keyboardType: 'email-address'
+  },
+  {
+    name: 'password',
+    icon: faLock,
+    secureTextEntry: true
+  },
+  {
+    name: 'repeatPassword',
+    icon: faLock,
+    secureTextEntry: true
+  }
+];
+
+type RegisterScreenProps = FormikProps<FormValues> &
+  PropsWithString<ScreenProps<RouteName.Register>>;
+
+const RegisterScreen = ({
+  isValid,
+  errors,
+  values,
+  touched,
+  handleChange,
+  handleBlur,
+  navigation,
+  string
+}: RegisterScreenProps) => {
+  const mappedInputs = inputs.map(({ name, icon, keyboardType, secureTextEntry }) => (
+    <Input
+      key={`RegisterForm-${name}`}
+      icon={icon}
+      value={values[name]}
+      error={touched[name] ? errors[name] : null}
+      onChangeText={handleChange(name)}
+      onBlur={handleBlur(name)}
+      keyboardType={keyboardType}
+      placeholder={string.authorization.register.form[name].label}
+      secureTextEntry={secureTextEntry}
+      wrapperStyle={authStyles.input}
+    />
+  ));
+
+  return (
+    <View style={authStyles.root}>
+      <View style={authStyles.container}>
+        <View style={authStyles.form}>
+          <Text style={authStyles.title}>{string.authorization.register.title}</Text>
+          <Text style={authStyles.subtitle}>{string.authorization.register.subtitle}</Text>
+          {mappedInputs}
+          <Text style={baseStyles.textAlignCenter}>{string.authorization.register.form.note}</Text>
+        </View>
+      </View>
+      <Button
+        style={authStyles.button}
+        title={string.authorization.register.form.submit}
+        disabled={!isValid}
+      />
+      <View style={baseStyles.rowSpaceBetween}>
+        <Text>{string.authorization.register.haveAccountMessage}</Text>
+        <Link
+          title={string.authorization.register.signIn}
+          onPress={() => navigation.navigate(RouteName.Login)}
         />
-        <Input
-          icon={faEnvelope}
-          placeholder={string.authorization.register.form.email}
-          containerStyle={authStyles.input}
-        />
-        <Input
-          icon={faLock}
-          placeholder={string.authorization.register.form.password}
-          containerStyle={authStyles.input}
-        />
-        <Input
-          icon={faLock}
-          placeholder={string.authorization.register.form.repeatPassword}
-          containerStyle={authStyles.input}
-        />
-        <Text style={baseStyles.textAlignCenter}>{string.authorization.register.form.note}</Text>
       </View>
     </View>
-    <Button style={authStyles.button} title={string.authorization.register.form.submit} />
-    <View style={baseStyles.rowSpaceBetween}>
-      <Text>{string.authorization.register.haveAccountMessage}</Text>
-      <Link
-        title={string.authorization.register.signIn}
-        onPress={() => navigation.navigate(RouteName.Login)}
-      />
-    </View>
-  </View>
-);
+  );
+};
 
-export default withTranslation(RegisterScreen);
+export default withTranslation(
+  withFormik<object, FormValues>({
+    handleSubmit: () => {},
+    validationSchema,
+    validateOnMount: true,
+    mapPropsToValues: () => ({
+      username: '',
+      email: '',
+      password: '',
+      repeatPassword: ''
+    })
+  })(RegisterScreen)
+);

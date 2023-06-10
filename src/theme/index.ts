@@ -3,6 +3,7 @@ import palette from './palette';
 const theme = {
   primary: palette.cyanAzure,
   secondary: palette.white,
+  danger: palette.coralRed,
   text: {
     base: palette.white
   },

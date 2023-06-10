@@ -4,9 +4,6 @@ import theme from '@theme';
 import { FontWeight } from '@theme/fonts';
 
 const styles = StyleSheet.create({
-  border: {
-    padding: 2
-  },
   container: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -14,6 +11,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 10,
     borderLeftColor: theme.secondary
+  },
+  error: {
+    marginLeft: 15,
+    fontSize: 12,
+    fontWeight: '600',
+    color: theme.danger
   },
   input: {
     flex: 1,

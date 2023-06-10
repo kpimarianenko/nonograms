@@ -9,6 +9,9 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10
   },
+  disabledContainer: {
+    opacity: 0.5
+  },
   title: {
     fontSize: 16,
     fontWeight: FontWeight.Bold,
