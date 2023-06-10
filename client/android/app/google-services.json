@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "355574235095",
+    "project_id": "rn-nonograms",
+    "storage_bucket": "rn-nonograms.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:355574235095:android:f0e28fc58c8200e5b35592",
+        "android_client_info": {
+          "package_name": "com.nonograms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "355574235095-i2iml79celft1t701g7ff9a44d05gb3g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwbXLEOPK8JZVQH-IY-a2sy4OJzwujOTI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "355574235095-i2iml79celft1t701g7ff9a44d05gb3g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
