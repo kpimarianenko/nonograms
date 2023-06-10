@@ -39,7 +39,7 @@ const Input = ({
 
   return (
     <View style={wrapperStyle}>
-      {!hideError && <Text style={styles.error}>{error}</Text>}
+      {!hideError && <Text style={styles.error}>{error || ' '}</Text>}
       <LinearGradient {...gradients.input} style={[styles.container, containerStyle]}>
         <View style={baseStyles.row}>
           {icon ? (

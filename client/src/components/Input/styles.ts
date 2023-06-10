@@ -14,7 +14,10 @@ const styles = StyleSheet.create({
   },
   error: {
     marginLeft: 15,
+    marginBottom: 2,
     fontSize: 12,
+    lineHeight: 12,
+    letterSpacing: 0.25,
     fontWeight: '600',
     color: theme.danger
   },

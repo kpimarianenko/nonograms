@@ -4,7 +4,7 @@ const palette = {
   antiFlashWhite_t50: '#F0F0F050',
 
   cyanAzure: '#507CBC',
-  coralRed: '#FF4040'
+  red: '#FF2020'
 };
 
 export default palette;

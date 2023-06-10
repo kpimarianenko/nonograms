@@ -57,7 +57,7 @@ module.exports = {
         },
         pathGroups: [
           {
-            pattern: '@(react|react-native)',
+            pattern: '{react,react-native}',
             group: 'external',
             position: 'before'
           },
@@ -102,7 +102,7 @@ module.exports = {
             position: 'before'
           },
           {
-            pattern: '@(@theme|@theme/**)',
+            pattern: '{@theme,@theme/**}',
             group: 'internal',
             position: 'before'
           },
