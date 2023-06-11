@@ -17,8 +17,11 @@
   },
   "dependencies": {
     "@apollo/server": "^4.7.3",
+    "dotenv": "^16.1.4",
     "graphql": "^16.6.0",
+    "mysql2": "^3.3.4",
     "reflect-metadata": "^0.1.13",
-    "type-graphql": "^2.0.0-beta.2"
+    "type-graphql": "^2.0.0-beta.2",
+    "typeorm": "^0.3.16"
   }
 }

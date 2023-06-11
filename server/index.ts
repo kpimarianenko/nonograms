@@ -1,9 +1,14 @@
 import 'reflect-metadata';
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
+import dotenv from 'dotenv';
 import { buildSchema } from 'type-graphql';
 
+import { connectDB } from '@db/connection';
+
 import UsersResolver from '@resolvers/users.resolver';
+
+dotenv.config();
 
 const startApolloServer = async () => {
   const schema = await buildSchema({
@@ -19,3 +24,4 @@ const startApolloServer = async () => {
 };
 
 startApolloServer();
+connectDB();

@@ -5,3 +5,7 @@ build/
 # GraphQL
 #
 schema.gql
+
+# Environment variables
+#
+.env

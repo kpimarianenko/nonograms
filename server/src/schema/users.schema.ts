@@ -1,7 +1,14 @@
 import { Field, ObjectType } from 'type-graphql';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @ObjectType()
-export class User {
-  @Field() id!: number;
-  @Field() name!: string;
+@Entity()
+export default class User extends BaseEntity {
+  @Field()
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
+
+  @Field()
+  @Column()
+  name!: string;
 }

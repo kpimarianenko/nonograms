@@ -1,32 +1,22 @@
 import { Arg, Mutation, Query, Resolver } from 'type-graphql';
 
-import { User } from '@schema/users.schema';
-
-import users from '../data/users.data';
+import User from '@schema/users.schema';
 
 @Resolver(() => User)
 class UsersResolver {
   @Query(() => [User])
   async getUsers(): Promise<User[]> {
-    return users;
+    return User.find();
   }
 
-  @Query(() => User)
-  async getUser(@Arg('id') id: number): Promise<User | undefined> {
-    return users.find(u => u.id === id);
+  @Query(() => User, { nullable: true })
+  async getUser(@Arg('id') id: string): Promise<User | null> {
+    return User.findOneBy({ id });
   }
 
   @Mutation(() => User)
   async createUser(@Arg('name') name: string): Promise<User> {
-    const id = users.length + 1;
-    const newUser = {
-      id,
-      name
-    };
-
-    users.push(newUser);
-
-    return newUser;
+    return User.save({ name });
   }
 }
 

@@ -11,6 +11,11 @@ module.exports = {
         },
         pathGroups: [
           {
+            pattern: '@db/**',
+            group: 'internal',
+            position: 'before'
+          },
+          {
             pattern: '@resolvers/**',
             group: 'internal',
             position: 'before'
