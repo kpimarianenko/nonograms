@@ -1,6 +1,9 @@
 {
   "scripts": {
     "lint": "eslint .",
+    "start:server": "cd server && yarn start",
+    "start:android-client": "cd client && yarn android",
+    "start:ios-client": "cd client && yarn ios",
     "prepare": "husky install"
   },
   "devDependencies": {
