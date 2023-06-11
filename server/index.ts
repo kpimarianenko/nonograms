@@ -1,7 +1,21 @@
-import express from 'express';
+import 'reflect-metadata';
+import { ApolloServer } from '@apollo/server';
+import { startStandaloneServer } from '@apollo/server/standalone';
+import { buildSchema } from 'type-graphql';
 
-const app = express();
-const port = 4000;
+import UsersResolver from './src/resolvers/users.resolver';
 
-// eslint-disable-next-line no-console
-app.listen(port, () => console.log(`Server started on port ${port}`));
+const startApolloServer = async () => {
+  const schema = await buildSchema({
+    resolvers: [UsersResolver],
+    emitSchemaFile: true
+  });
+
+  const server = new ApolloServer({ schema });
+  const { url } = await startStandaloneServer(server);
+
+  // eslint-disable-next-line no-console
+  console.log(`Server ready at ${url}`);
+};
+
+startApolloServer();
