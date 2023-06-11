@@ -4,6 +4,7 @@
     "start:server": "cd server && yarn start",
     "start:android-client": "cd client && yarn android",
     "start:ios-client": "cd client && yarn ios",
+    "install": "cd client && yarn install && cd ../server && yarn install",
     "prepare": "husky install"
   },
   "devDependencies": {
