@@ -1,6 +1,7 @@
 import { Arg, Mutation, Query, Resolver } from 'type-graphql';
 
-import { User } from '../schema/users.schema';
+import { User } from '@schema/users.schema';
+
 import users from '../data/users.data';
 
 @Resolver(() => User)
