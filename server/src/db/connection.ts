@@ -2,7 +2,7 @@ import { DataSource } from 'typeorm';
 
 export const connectDB = () => {
   const AppDataSource = new DataSource({
-    type: 'mysql',
+    type: 'postgres',
     host: process.env.DB_HOST,
     port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3306,
     database: process.env.DB_NAME,
@@ -14,5 +14,5 @@ export const connectDB = () => {
   });
 
   // eslint-disable-next-line no-console
-  AppDataSource.initialize().then(() => console.log('Connected to MySQL server'));
+  AppDataSource.initialize().then(() => console.log('Connected to PostgreSQL server'));
 };
