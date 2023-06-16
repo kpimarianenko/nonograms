@@ -8,6 +8,7 @@ module.exports = {
           '@assets': './assets',
           '@components': './src/components',
           '@constants': './src/constants',
+          '@gql': './src/graphql',
           '@helpers': './src/helpers',
           '@hooks': './src/hooks',
           '@i18n': './src/i18n',

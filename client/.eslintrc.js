@@ -11,6 +11,7 @@ module.exports = {
   },
   plugins: ['react', 'react-native', 'react-hooks'],
   extends: ['plugin:react/recommended'],
+  ignorePatterns: ['src/graphql/index.ts'],
   rules: {
     'react/prop-types': 'off',
     'react/display-name': 'off',
@@ -60,6 +61,11 @@ module.exports = {
           },
           {
             pattern: '@screens/**',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@gql',
             group: 'internal',
             position: 'before'
           },

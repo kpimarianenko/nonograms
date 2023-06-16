@@ -5,6 +5,7 @@
       "@assets/*": ["./assets/*"],
       "@components/*": ["./src/components/*"],
       "@constants/*": ["./src/constants/*"],
+      "@gql": ["./src/graphql"],
       "@helpers/*": ["./src/helpers/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@i18n": ["./src/i18n"],
@@ -15,6 +16,7 @@
       "@theme": ["./src/theme"],
       "@theme/*": ["./src/theme/*"]
     },
+    "types": ["node"],
     "target": "es6",
     "allowJs": true,
     "skipLibCheck": true,
