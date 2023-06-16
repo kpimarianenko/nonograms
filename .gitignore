@@ -7,3 +7,7 @@ yarn-error.log
 # VSCode
 #
 .vscode
+
+# Environment variables
+#
+.env
