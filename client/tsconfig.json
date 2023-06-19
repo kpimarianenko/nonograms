@@ -16,7 +16,6 @@
       "@theme": ["./src/theme"],
       "@theme/*": ["./src/theme/*"]
     },
-    "types": ["node"],
     "target": "es6",
     "allowJs": true,
     "skipLibCheck": true,
