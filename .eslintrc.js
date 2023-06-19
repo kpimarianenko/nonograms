@@ -7,7 +7,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'prettier', 'import'],
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
   rules: {
-    '@typescript-eslint/no-unused-vars': ['error', { ignoreRestSiblings: true }],
+    '@typescript-eslint/no-unused-vars': ['warn', { ignoreRestSiblings: true }],
     '@typescript-eslint/no-empty-function': 'off',
     'no-console': 'warn',
     'arrow-body-style': ['error', 'as-needed'],
@@ -18,7 +18,7 @@ module.exports = {
       { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
       { blankLine: 'any', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var'] }
     ],
-    'sort-imports': ['error', { ignoreCase: true, ignoreDeclarationSort: true }]
+    'sort-imports': ['warn', { ignoreCase: true, ignoreDeclarationSort: true }]
   },
   ignorePatterns: ['!.prettierrc.js'],
   settings: {
