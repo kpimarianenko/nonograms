@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     lineHeight: 12,
     letterSpacing: 0.25,
     fontWeight: '600',
-    color: theme.danger
+    color: theme.input.error
   },
   input: {
     flex: 1,

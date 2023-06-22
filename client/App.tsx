@@ -2,6 +2,8 @@ import 'react-native-gesture-handler';
 
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
+import ToastsProvider from '@components/Toasts';
+
 import AppStackNavigator from '@navigation/AppStackNavigator';
 import NavigationContainer from '@navigation/NavigationContainer';
 
@@ -16,11 +18,13 @@ const client = new ApolloClient({
 
 const App = () => (
   <I18Provider>
-    <ApolloProvider client={client}>
-      <NavigationContainer>
-        <AppStackNavigator isAuthorized={false} />
-      </NavigationContainer>
-    </ApolloProvider>
+    <ToastsProvider>
+      <ApolloProvider client={client}>
+        <NavigationContainer>
+          <AppStackNavigator isAuthorized={false} />
+        </NavigationContainer>
+      </ApolloProvider>
+    </ToastsProvider>
   </I18Provider>
 );
 
