@@ -49,6 +49,7 @@
     "@react-native-community/eslint-config": "^3.2.0",
     "@tsconfig/react-native": "^2.0.2",
     "@types/jest": "^29.2.1",
+    "@types/node": "^20.3.1",
     "@types/react": "^18.0.24",
     "@types/react-test-renderer": "^18.0.0",
     "@types/yup": "^0.32.0",
@@ -64,5 +65,8 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": "tsc-files --noEmit --pretty"
   }
 }

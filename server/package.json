@@ -26,5 +26,8 @@
     "reflect-metadata": "^0.1.13",
     "type-graphql": "^2.0.0-beta.2",
     "typeorm": "^0.3.16"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": "tsc-files --noEmit --pretty"
   }
 }
