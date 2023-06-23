@@ -1,7 +1,8 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { View } from 'react-native';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
 import Animated, {
   Easing,
   runOnJS,
@@ -33,10 +34,22 @@ interface ToastProps {
   shift: () => void;
   iconSize?: number;
   slideDuration?: number;
+  gestureEventEndSlideDuration?: number;
+  hideOffset?: number;
 }
 
-const ToastComponent = ({ toast, shift, iconSize = 32, slideDuration = 350 }: ToastProps) => {
-  const { type, title, subtitle, duration = 3000 } = toast;
+const ToastComponent = ({
+  toast,
+  shift,
+  iconSize = 32,
+  slideDuration = 350,
+  gestureEventEndSlideDuration = 200,
+  hideOffset = 30
+}: ToastProps) => {
+  const { type, title, subtitle, duration = 4000 } = toast;
+
+  const [isSliding, setIsSliding] = useState(true);
+  const [autoHideTimeoutId, setAutoHideTimeoutId] = useState<ReturnType<typeof setTimeout>>();
 
   const offset = useSharedValue(slideMaxOffset);
   const progress = useSharedValue(minProgress);
@@ -52,43 +65,84 @@ const ToastComponent = ({ toast, shift, iconSize = 32, slideDuration = 350 }: To
     width: `${progress.value}%`
   }));
 
+  const setSliding = () => setIsSliding(true);
+
+  const resetSliding = () => setIsSliding(false);
+
+  const openToast = (duration: number = slideDuration) => {
+    setSliding();
+    offset.value = withTiming(
+      slideMinOffset,
+      {
+        duration,
+        easing: slideOutEasing
+      },
+      () => runOnJS(resetSliding)()
+    );
+  };
+
+  const handleToastHide = () => {
+    progress.value = 0;
+    resetSliding();
+    shift();
+  };
+
+  const hideToast = (duration: number = slideDuration) => {
+    setSliding();
+    offset.value = withTiming(
+      slideMaxOffset,
+      {
+        duration,
+        easing: slideInEasing
+      },
+      () => runOnJS(handleToastHide)()
+    );
+  };
+
   useEffect(() => {
-    offset.value = withTiming(slideMinOffset, { duration: slideDuration, easing: slideOutEasing });
+    openToast();
+    setAutoHideTimeoutId(setTimeout(() => hideToast(), duration - slideDuration));
+
     progress.value = withTiming(maxProgress, {
       duration,
       easing: Easing.linear
     });
 
-    setTimeout(() => {
-      offset.value = withTiming(
-        slideMaxOffset,
-        {
-          duration: slideDuration,
-          easing: slideInEasing
-        },
-        () => {
-          progress.value = 0;
-          runOnJS(shift)();
-        }
-      );
-    }, duration - slideDuration);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toast]);
 
   return (
-    <View style={styles.root}>
-      <Animated.View style={[containerStyle, animatedContainerStyles]}>
-        <View style={styles.contentContainer}>
-          <FontAwesomeIcon style={styles.icon} icon={icon} size={iconSize} />
-          <View style={baseStyles.flex}>
-            <Text style={styles.title}>{title}</Text>
-            {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
+    <GestureHandlerRootView style={styles.root}>
+      <PanGestureHandler
+        onGestureEvent={e => {
+          if (isSliding) return;
+          offset.value = Math.min(0, e.nativeEvent.translationY);
+        }}
+        onEnded={e => {
+          if (isSliding) return;
+          if (Math.abs(e.nativeEvent.translationY as number) >= hideOffset) {
+            clearTimeout(autoHideTimeoutId);
+            return hideToast(gestureEventEndSlideDuration);
+          }
+
+          offset.value = withTiming(slideMinOffset, {
+            duration: gestureEventEndSlideDuration,
+            easing: slideOutEasing
+          });
+        }}
+      >
+        <Animated.View style={[containerStyle, animatedContainerStyles]}>
+          <View style={styles.contentContainer}>
+            <FontAwesomeIcon style={styles.icon} icon={icon} size={iconSize} />
+            <View style={baseStyles.flex}>
+              <Text style={styles.title}>{title}</Text>
+              {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
+            </View>
           </View>
-        </View>
-        <Animated.View style={[styles.progressBar, animatedProgressBarStyles]} />
-      </Animated.View>
-    </View>
+          <Animated.View style={[styles.progressBar, animatedProgressBarStyles]} />
+        </Animated.View>
+      </PanGestureHandler>
+    </GestureHandlerRootView>
   );
 };
 
