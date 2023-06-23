@@ -11,7 +11,27 @@ module.exports = {
         },
         pathGroups: [
           {
+            pattern: '@assets/**',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@types',
+            group: 'internal',
+            position: 'before'
+          },
+          {
             pattern: '@db/**',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@firebase',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@constants/**',
             group: 'internal',
             position: 'before'
           },
@@ -21,7 +41,17 @@ module.exports = {
             position: 'before'
           },
           {
-            pattern: '@schema/**',
+            pattern: '@middlewares',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@models/**',
+            group: 'internal',
+            position: 'before'
+          },
+          {
+            pattern: '@i18n/**',
             group: 'internal',
             position: 'before'
           }

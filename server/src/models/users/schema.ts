@@ -9,6 +9,14 @@ export default class User extends BaseEntity {
   id!: string;
 
   @Field()
-  @Column()
-  name!: string;
+  @Column({ unique: true })
+  fbuid!: string;
+
+  @Field()
+  @Column({ unique: true })
+  username!: string;
+
+  @Field()
+  @Column({ unique: true })
+  email!: string;
 }

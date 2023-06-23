@@ -2,9 +2,15 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
+      "@assets/*": ["./assets/*"],
+      "@constants/*": ["./src/constants/*"],
       "@db/*": ["./src/db/*"],
+      "@firebase": ["./src/firebase"],
+      "@i18n/*": ["./src/i18n/*"],
+      "@middlewares": ["./src/middlewares"],
+      "@models/*": ["./src/models/*"],
       "@resolvers/*": ["./src/resolvers/*"],
-      "@schema/*": ["./src/schema/*"]
+      "@types": ["./src/types"]
     },
     "outDir": "build",
     "target": "es6",

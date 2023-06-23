@@ -1,0 +1,11 @@
+{
+  "errors": {
+    "common": {
+      "validationError": "Validation error"
+    },
+    "auth": {
+      "usernameTaken": "This username is already taken",
+      "emailTaken": "This email is already taken"
+    }
+  }
+}
