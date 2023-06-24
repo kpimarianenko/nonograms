@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { AppOptions } from 'firebase-admin';
 import { applicationDefault } from 'firebase-admin/app';
+import { PasswordPolicyConfig } from 'firebase-admin/auth';
 import { DataSourceOptions } from 'typeorm';
 
 import { LocaleCode } from '@i18n/types';
@@ -14,6 +15,7 @@ interface Config {
   hash: { algorithm: string; salt: string };
   database: DataSourceOptions;
   firebase: AppOptions;
+  fbPasswordPolicy: PasswordPolicyConfig;
 }
 
 const config: Config = {
@@ -38,6 +40,17 @@ const config: Config = {
   firebase: {
     credential: applicationDefault(),
     projectId: process.env.FIREBASE_PROJECT_ID
+  },
+  fbPasswordPolicy: {
+    enforcementState: 'OFF',
+    constraints: {
+      requireNumeric: false,
+      requireNonAlphanumeric: false,
+      requireLowercase: false,
+      requireUppercase: false,
+      minLength: 6,
+      maxLength: 50
+    }
   }
 };
 
