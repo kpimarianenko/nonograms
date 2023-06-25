@@ -1,31 +1,36 @@
 import 'react-native-gesture-handler';
+import { useEffect, useRef } from 'react';
 
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
 
-import ToastsProvider from '@components/Toasts';
+import client from '@client';
+
+import ToastProvider from '@components/Toasts';
+import { ToastHandle } from '@components/Toasts/types';
 
 import AppStackNavigator from '@navigation/AppStackNavigator';
 import NavigationContainer from '@navigation/NavigationContainer';
 
-import config from '@constants/config';
+import ToastService from '@services/toastService';
 
 import { I18Provider } from '@i18n';
 
-const client = new ApolloClient({
-  uri: config.apiHost,
-  cache: new InMemoryCache()
-});
+const App = () => {
+  const toastRef = useRef<ToastHandle>(null);
 
-const App = () => (
-  <I18Provider>
-    <ToastsProvider>
-      <ApolloProvider client={client}>
-        <NavigationContainer>
-          <AppStackNavigator isAuthorized={false} />
-        </NavigationContainer>
-      </ApolloProvider>
-    </ToastsProvider>
-  </I18Provider>
-);
+  useEffect(() => ToastService.init(toastRef), []);
+
+  return (
+    <I18Provider>
+      <ToastProvider ref={toastRef}>
+        <ApolloProvider client={client}>
+          <NavigationContainer>
+            <AppStackNavigator isAuthorized={false} />
+          </NavigationContainer>
+        </ApolloProvider>
+      </ToastProvider>
+    </I18Provider>
+  );
+};
 
 export default App;

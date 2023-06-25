@@ -15,9 +15,9 @@ export interface Toast extends ToastOptions {
   type: MessageType;
 }
 
-export interface ToastsContextValue {
-  success: (options: ToastOptions) => void;
-  danger: (options: ToastOptions) => void;
+export interface ToastHandle {
+  error: (options: ToastOptions) => void;
   warning: (options: ToastOptions) => void;
+  success: (options: ToastOptions) => void;
   info: (options: ToastOptions) => void;
 }

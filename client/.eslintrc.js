@@ -45,6 +45,11 @@ module.exports = {
             position: 'before'
           },
           {
+            pattern: '@client',
+            group: 'internal',
+            position: 'before'
+          },
+          {
             pattern: '@storage',
             group: 'internal',
             position: 'before'

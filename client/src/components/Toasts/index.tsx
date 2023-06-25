@@ -1,16 +1,19 @@
-import { createContext, PropsWithChildren, useCallback, useState } from 'react';
+import {
+  forwardRef,
+  ForwardRefRenderFunction,
+  PropsWithChildren,
+  useCallback,
+  useImperativeHandle,
+  useState
+} from 'react';
 
 import ToastComponent from './Toast';
-import { MessageType, Toast, ToastOptions, ToastsContextValue } from './types';
+import { MessageType, Toast, ToastHandle, ToastOptions } from './types';
 
-export const ToastsContext = createContext<ToastsContextValue>({
-  success: () => {},
-  danger: () => {},
-  warning: () => {},
-  info: () => {}
-});
-
-const ToastsProvider = ({ children }: PropsWithChildren) => {
+const ToastProvider: ForwardRefRenderFunction<ToastHandle, PropsWithChildren> = (
+  { children },
+  ref
+) => {
   const [queue, setQueue] = useState<Array<Toast>>([]);
 
   const currentToast = queue[0];
@@ -18,22 +21,33 @@ const ToastsProvider = ({ children }: PropsWithChildren) => {
   const show = (type: MessageType, options: ToastOptions) =>
     setQueue(q => [...q, { type, ...options }]);
 
-  const shift = useCallback(() => setQueue(q => q.slice(1)), []);
+  const shift = () => setQueue(q => q.slice(1));
 
-  const success = (options: ToastOptions) => show(MessageType.Success, options);
+  const success = useCallback((options: ToastOptions) => show(MessageType.Success, options), []);
 
-  const danger = (options: ToastOptions) => show(MessageType.Danger, options);
+  const error = useCallback((options: ToastOptions) => show(MessageType.Danger, options), []);
 
-  const warning = (options: ToastOptions) => show(MessageType.Warning, options);
+  const warning = useCallback((options: ToastOptions) => show(MessageType.Warning, options), []);
 
-  const info = (options: ToastOptions) => show(MessageType.Info, options);
+  const info = useCallback((options: ToastOptions) => show(MessageType.Info, options), []);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      error,
+      success,
+      warning,
+      info
+    }),
+    [error, success, warning, info]
+  );
 
   return (
-    <ToastsContext.Provider value={{ success, danger, warning, info }}>
+    <>
       {currentToast && <ToastComponent toast={currentToast} shift={shift} />}
       {children}
-    </ToastsContext.Provider>
+    </>
   );
 };
 
-export default ToastsProvider;
+export default forwardRef(ToastProvider);

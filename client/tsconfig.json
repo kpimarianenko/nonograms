@@ -3,6 +3,7 @@
     "baseUrl": "./",
     "paths": {
       "@assets/*": ["./assets/*"],
+      "@client": ["./src/client"],
       "@components/*": ["./src/components/*"],
       "@constants/*": ["./src/constants/*"],
       "@gql": ["./src/graphql"],
@@ -31,5 +32,5 @@
     "jsx": "react-jsx"
   },
   "extends": "@tsconfig/react-native/tsconfig.json",
-  "include": ["src", "__tests__", "index.ts", "App.tsx"]
+  "include": ["src", "index.ts", "App.tsx"]
 }

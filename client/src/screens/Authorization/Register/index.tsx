@@ -11,6 +11,10 @@ import Text from '@components/Text';
 
 import { RouteName, ScreenProps } from '@navigation/types';
 
+import { useRegisterMutation } from '@gql';
+
+import ToastService from '@services/toastService';
+
 import baseStyles from '@theme/styles';
 
 import { PropsWithString, withTranslation } from '@i18n';
@@ -60,6 +64,31 @@ const RegisterScreen = ({
   navigation,
   string
 }: RegisterScreenProps) => {
+  const [registerMutation, { loading }] = useRegisterMutation({
+    fetchPolicy: 'no-cache',
+    onCompleted: ({ register }) => {
+      if (register) {
+        navigation.navigate(RouteName.Login);
+        ToastService.success({
+          title: string.authorization.register.form.success.title,
+          subtitle: string.authorization.register.form.success.subtitle
+        });
+      }
+    }
+  });
+
+  const register = () => {
+    registerMutation({
+      variables: {
+        input: {
+          username: values.username,
+          email: values.email,
+          password: values.password
+        }
+      }
+    });
+  };
+
   const mappedInputs = inputs.map(({ name, icon, keyboardType, secureTextEntry }) => (
     <Input
       key={`RegisterForm-${name}`}
@@ -88,7 +117,8 @@ const RegisterScreen = ({
       <Button
         style={authStyles.button}
         title={string.authorization.register.form.submit}
-        disabled={!isValid}
+        onPress={register}
+        disabled={!isValid || loading}
       />
       <View style={baseStyles.rowSpaceBetween}>
         <Text>{string.authorization.register.haveAccountMessage}</Text>

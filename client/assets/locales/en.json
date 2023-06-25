@@ -49,7 +49,11 @@
           }
         },
         "note": "By registering, you are agreeing to our Terms of use and Privacy Policy",
-        "submit": "Register"
+        "submit": "Register",
+        "success": {
+          "title": "Account registered successfully",
+          "subtitle": "You can login to your account now"
+        }
       },
       "haveAccountMessage": "Already have an account?",
       "signIn": "Login"

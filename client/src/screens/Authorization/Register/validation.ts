@@ -21,7 +21,7 @@ export const validationSchema = ({ string }: PropsWithString) => {
     password: yup
       .string()
       .required(form.password.errors.required)
-      .min(4, form.password.errors.min)
+      .min(6, form.password.errors.min)
       .max(50, form.password.errors.max),
     repeatPassword: yup
       .string()

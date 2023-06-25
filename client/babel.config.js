@@ -7,6 +7,7 @@ module.exports = {
       {
         alias: {
           '@assets': './assets',
+          '@client': './src/client',
           '@components': './src/components',
           '@constants': './src/constants',
           '@gql': './src/graphql',
