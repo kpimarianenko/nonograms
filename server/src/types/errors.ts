@@ -1,7 +1,5 @@
 import { GraphQLError, GraphQLErrorOptions } from 'graphql';
 
-import { Status } from './status';
-
 export enum ErrorCode {
   BadRequest = 'BAD_REQUEST_ERROR',
   Unauthorized = 'UNAUTHORIZED_ERROR',
@@ -11,50 +9,46 @@ export enum ErrorCode {
   NotImplemented = 'NOT_IMPLEMENTED_ERROR'
 }
 
-const getOptions = (options: GraphQLErrorOptions, status: Status, errorCode: ErrorCode) => ({
+const getOptions = (options: GraphQLErrorOptions, errorCode: ErrorCode) => ({
   ...options,
   extensions: {
     code: errorCode,
-    ...options.extensions,
-    http: {
-      status,
-      ...(options.extensions?.http || {})
-    }
+    ...options.extensions
   }
 });
 
 export class BadRequestHTTPError extends GraphQLError {
   constructor(message: string, options: GraphQLErrorOptions = {}) {
-    super(message, getOptions(options, Status.BadRequest, ErrorCode.BadRequest));
+    super(message, getOptions(options, ErrorCode.BadRequest));
   }
 }
 
 export class UnauthorizedHTTPError extends GraphQLError {
   constructor(message: string, options: GraphQLErrorOptions = {}) {
-    super(message, getOptions(options, Status.Unauthorized, ErrorCode.Unauthorized));
+    super(message, getOptions(options, ErrorCode.Unauthorized));
   }
 }
 
 export class ForbiddenHTTPError extends GraphQLError {
   constructor(message: string, options: GraphQLErrorOptions = {}) {
-    super(message, getOptions(options, Status.Forbidden, ErrorCode.Forbidden));
+    super(message, getOptions(options, ErrorCode.Forbidden));
   }
 }
 
 export class NotFoundHTTPError extends GraphQLError {
   constructor(message: string, options: GraphQLErrorOptions = {}) {
-    super(message, getOptions(options, Status.NotFound, ErrorCode.NotFound));
+    super(message, getOptions(options, ErrorCode.NotFound));
   }
 }
 
 export class InternalServerHTTPError extends GraphQLError {
   constructor(message: string, options: GraphQLErrorOptions = {}) {
-    super(message, getOptions(options, Status.InternalServerError, ErrorCode.InternalServerError));
+    super(message, getOptions(options, ErrorCode.InternalServerError));
   }
 }
 
 export class NotImplementedHTTPError extends GraphQLError {
   constructor(message: string, options: GraphQLErrorOptions = {}) {
-    super(message, getOptions(options, Status.NotImplemented, ErrorCode.NotImplemented));
+    super(message, getOptions(options, ErrorCode.NotImplemented));
   }
 }
