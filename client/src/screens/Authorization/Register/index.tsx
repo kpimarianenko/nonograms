@@ -118,7 +118,8 @@ const RegisterScreen = ({
         style={authStyles.button}
         title={string.authorization.register.form.submit}
         onPress={register}
-        disabled={!isValid || loading}
+        disabled={!isValid}
+        loading={loading}
       />
       <View style={baseStyles.rowSpaceBetween}>
         <Text>{string.authorization.register.haveAccountMessage}</Text>

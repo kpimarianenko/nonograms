@@ -3,6 +3,8 @@ import palette from './palette';
 const theme = {
   primary: palette.cyanAzure,
   secondary: palette.white,
+  tint: palette.antiFlashWhite,
+  transparent: palette.transparent,
   text: {
     base: palette.white
   },
