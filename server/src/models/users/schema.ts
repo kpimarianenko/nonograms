@@ -1,5 +1,14 @@
-import { Field, ObjectType } from 'type-graphql';
+import { Field, InputType, ObjectType } from 'type-graphql';
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
+@InputType()
+export class GetUserInput {
+  @Field({ nullable: true })
+  id?: string;
+
+  @Field({ nullable: true })
+  username?: string;
+}
 
 @ObjectType()
 @Entity()

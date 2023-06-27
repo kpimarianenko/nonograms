@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600'
   },
-  subtitle: {
+  message: {
     marginTop: 3
   },
   progressBar: {

@@ -1,0 +1,7 @@
+query GetUserByUsername($username: String!) {
+  getUser(input: { username: $username }) {
+    id
+    username
+    email
+  }
+}

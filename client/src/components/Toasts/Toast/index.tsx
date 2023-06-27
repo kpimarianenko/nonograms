@@ -46,7 +46,7 @@ const ToastComponent = ({
   gestureEventEndSlideDuration = 200,
   hideOffset = 30
 }: ToastProps) => {
-  const { type, title, subtitle, duration = 4000 } = toast;
+  const { type, title, message, duration = 4000 } = toast;
 
   const [isSliding, setIsSliding] = useState(true);
   const [autoHideTimeoutId, setAutoHideTimeoutId] = useState<ReturnType<typeof setTimeout>>();
@@ -136,7 +136,7 @@ const ToastComponent = ({
             <FontAwesomeIcon style={styles.icon} icon={icon} size={iconSize} />
             <View style={baseStyles.flex}>
               <Text style={styles.title}>{title}</Text>
-              {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
+              {message && <Text style={styles.message}>{message}</Text>}
             </View>
           </View>
           <Animated.View style={[styles.progressBar, animatedProgressBarStyles]} />

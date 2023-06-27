@@ -1,4 +1,10 @@
 {
+  "common": {
+    "error": {
+      "title": "Error",
+      "message": "Something went wrong"
+    }
+  },
   "authorization": {
     "login": {
       "title": "Welcome Back!",
@@ -52,11 +58,15 @@
         "submit": "Register",
         "success": {
           "title": "Account registered successfully",
-          "subtitle": "You can login to your account now"
+          "message": "You can login to your account now"
         }
       },
       "haveAccountMessage": "Already have an account?",
       "signIn": "Login"
+    },
+    "errors": {
+      "title": "Authorization error",
+      "wrongPassword": "Wrong password"
     }
   },
   "home": {

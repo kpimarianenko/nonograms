@@ -8,7 +8,7 @@ export enum MessageType {
 export interface ToastOptions {
   duration?: number;
   title: string;
-  subtitle?: string;
+  message?: string;
 }
 
 export interface Toast extends ToastOptions {

@@ -1,11 +1,16 @@
 {
   "errors": {
     "common": {
-      "validationError": "Validation error"
+      "validationError": "Validation error",
+      "exactlyOneArgument": "You should provide exactly one argument for this request"
     },
     "auth": {
       "usernameTaken": "This username is already taken",
       "emailTaken": "This email is already taken"
+    },
+    "user": {
+      "idNotFound": "User with this ID is not found",
+      "usernameNotFound": "User with this username is not found"
     }
   }
 }

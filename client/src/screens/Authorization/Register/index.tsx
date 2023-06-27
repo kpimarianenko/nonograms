@@ -71,7 +71,7 @@ const RegisterScreen = ({
         navigation.navigate(RouteName.Login);
         ToastService.success({
           title: string.authorization.register.form.success.title,
-          subtitle: string.authorization.register.form.success.subtitle
+          message: string.authorization.register.form.success.message
         });
       }
     }

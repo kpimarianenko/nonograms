@@ -7,7 +7,7 @@ import config from '@constants/config';
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (networkError) {
-    ToastService.error({ title: 'Network Error', subtitle: networkError.message });
+    ToastService.error({ title: 'Network Error', message: networkError.message });
 
     // eslint-disable-next-line no-console
     console.error(`Network error: ${networkError.message}`);
@@ -15,7 +15,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
   if (graphQLErrors) {
     graphQLErrors.forEach(({ message, extensions, locations, path }) => {
-      ToastService.error({ title: 'Error', subtitle: message });
+      ToastService.error({ title: 'Error', message });
 
       // eslint-disable-next-line no-console
       console.error(

@@ -1,12 +1,29 @@
-import { Arg, Query, Resolver } from 'type-graphql';
+import { Arg, Ctx, Query, Resolver } from 'type-graphql';
 
-import User from '@models/users/schema';
+import { BadRequestHTTPError, Context, NotFoundHTTPError } from '@types';
+
+import User, { GetUserInput } from '@models/users/schema';
 
 @Resolver(() => User)
 class UsersResolver {
-  @Query(() => User, { nullable: true })
-  async getUser(@Arg('id') id: string): Promise<User | null> {
-    return User.findOneBy({ id });
+  @Query(() => User)
+  async getUser(
+    @Arg('input') { id, username }: GetUserInput,
+    @Ctx() { string }: Context
+  ): Promise<User> {
+    if (!id === !username) {
+      throw new BadRequestHTTPError(string.errors.common.exactlyOneArgument);
+    }
+
+    const user = await User.findOneBy(id ? { id } : { username });
+
+    if (!user) {
+      throw new NotFoundHTTPError(
+        id ? string.errors.user.idNotFound : string.errors.user.usernameNotFound
+      );
+    }
+
+    return user;
   }
 }
 
