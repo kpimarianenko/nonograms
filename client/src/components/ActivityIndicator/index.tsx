@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import Grid from '@components/Grid';
-import { CellState } from '@components/Grid/types';
+import Grid, { CellState } from '@components/Grid';
 
 import theme from '@theme';
 

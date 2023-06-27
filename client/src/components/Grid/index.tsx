@@ -31,4 +31,5 @@ const Grid = ({ cells, cellSize = 25, filledColor = theme.tint }: GridProps) => 
   </View>
 );
 
+export { CellState };
 export default Grid;
