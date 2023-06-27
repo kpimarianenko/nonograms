@@ -45,7 +45,7 @@ module.exports = {
             position: 'before'
           },
           {
-            pattern: '@client',
+            pattern: '{@client,@client/**}',
             group: 'internal',
             position: 'before'
           },
@@ -105,7 +105,7 @@ module.exports = {
             position: 'before'
           },
           {
-            pattern: '@i18n',
+            pattern: '{@i18n,@i18n/**}',
             group: 'internal',
             position: 'after'
           },

@@ -4,6 +4,10 @@ import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 import auth from '@react-native-firebase/auth';
 import { FormikProps, withFormik } from 'formik';
 
+import { tokenStorageKey } from '@client/constants';
+
+import { useStorage } from '@storage';
+
 import Button from '@components/Button';
 import Checkbox from '@components/Checkbox';
 import Input from '@components/Input';
@@ -37,6 +41,8 @@ const LoginScreen = ({
   navigation,
   string
 }: LoginScreenProps) => {
+  const [, setToken] = useStorage<string>(tokenStorageKey, '');
+
   const [getUserByUsername] = useGetUserByUsernameLazyQuery();
 
   const login = async () => {
@@ -50,7 +56,7 @@ const LoginScreen = ({
       auth()
         .signInWithEmailAndPassword(data.getUser.email, values.password)
         .then(() => auth().currentUser?.getIdToken())
-        .then(a => console.log(a))
+        .then(token => setToken(token || ''))
         .catch(err => {
           if (err.code === FirebaseAuthErrors.WrongPassword) {
             return ToastService.error({
