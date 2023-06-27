@@ -12,13 +12,16 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderLeftColor: theme.secondary
   },
+  disabled: {
+    opacity: 0.65
+  },
   error: {
     marginLeft: 15,
     marginBottom: 2,
     fontSize: 12,
     lineHeight: 12,
     letterSpacing: 0.25,
-    fontWeight: '600',
+    fontWeight: FontWeight.SemiBold,
     color: theme.input.error
   },
   input: {

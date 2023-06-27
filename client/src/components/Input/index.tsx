@@ -17,6 +17,7 @@ interface InputProps extends TextInputProps {
   icon?: IconDefinition;
   error?: string | null;
   hideError?: boolean;
+  disabled?: boolean;
   iconSize?: number;
   iconStyle?: FontAwesomeIconStyle;
   containerStyle?: StyleProp<ViewStyle>;
@@ -28,6 +29,8 @@ const Input = ({
   value,
   error,
   hideError = false,
+  editable: editableProp = true,
+  disabled = false,
   iconSize = 24,
   style,
   iconStyle,
@@ -35,17 +38,26 @@ const Input = ({
   wrapperStyle,
   ...props
 }: InputProps) => {
+  const editable = editableProp && !disabled;
   const styleWithFont = useFontStyle(style);
 
   return (
     <View style={wrapperStyle}>
       {!hideError && <Text style={styles.error}>{error || ' '}</Text>}
-      <LinearGradient {...gradients.input} style={[styles.container, containerStyle]}>
+      <LinearGradient
+        {...gradients.input}
+        style={[styles.container, disabled && styles.disabled, containerStyle]}
+      >
         <View style={baseStyles.row}>
           {icon ? (
             <FontAwesomeIcon icon={icon} style={[styles.icon, iconStyle]} size={iconSize} />
           ) : null}
-          <TextInput value={value || ''} {...props} style={[styles.input, styleWithFont]} />
+          <TextInput
+            value={value || ''}
+            editable={editable}
+            {...props}
+            style={[styles.input, styleWithFont]}
+          />
         </View>
       </LinearGradient>
     </View>

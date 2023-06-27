@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { IndicatorSize } from '@components/ActivityIndicator';
+
 import theme from '@theme';
 import { FontWeight } from '@theme/fonts';
 
@@ -15,6 +17,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
+    lineHeight: IndicatorSize.Small,
     fontWeight: FontWeight.Bold,
     textAlign: 'center'
   }

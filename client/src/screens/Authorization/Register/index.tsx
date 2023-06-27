@@ -95,6 +95,7 @@ const RegisterScreen = ({
       icon={icon}
       value={values[name]}
       error={touched[name] ? errors[name] : null}
+      disabled={loading}
       onChangeText={handleChange(name)}
       onBlur={handleBlur(name)}
       keyboardType={keyboardType}
