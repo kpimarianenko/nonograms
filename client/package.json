@@ -68,8 +68,5 @@
   },
   "jest": {
     "preset": "react-native"
-  },
-  "lint-staged": {
-    "**/*.{ts,tsx}": "tsc-files --noEmit --pretty"
   }
 }
