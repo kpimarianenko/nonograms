@@ -65,7 +65,6 @@ const RegisterScreen = ({
   string
 }: RegisterScreenProps) => {
   const [registerMutation, { loading }] = useRegisterMutation({
-    fetchPolicy: 'no-cache',
     onCompleted: ({ register }) => {
       if (register) {
         navigation.navigate(RouteName.Login);

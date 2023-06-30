@@ -6,7 +6,13 @@ const config: CodegenConfig = {
   generates: {
     'src/graphql/index.ts': {
       overwrite: true,
-      plugins: ['typescript', 'typescript-operations', 'typescript-react-apollo']
+      plugins: ['typescript', 'typescript-operations', 'typescript-react-apollo'],
+      config: {
+        defaultBaseOptions: {
+          fetchPolicy: 'network-only',
+          nextFetchPolicy: 'network-only'
+        }
+      }
     }
   }
 };
