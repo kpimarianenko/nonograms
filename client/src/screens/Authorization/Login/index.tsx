@@ -1,12 +1,8 @@
 import { TouchableOpacity, View } from 'react-native';
 
 import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
-import auth from '@react-native-firebase/auth';
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { FormikProps, withFormik } from 'formik';
-
-import { tokenStorageKey } from '@client/constants';
-
-import { useStorage } from '@storage';
 
 import Button from '@components/Button';
 import Checkbox from '@components/Checkbox';
@@ -19,6 +15,8 @@ import { RouteName, ScreenProps } from '@navigation/types';
 import { useGetUserByUsernameLazyQuery } from '@gql';
 
 import ToastService from '@services/toastService';
+
+import useAuth from '@hooks/useAuth';
 
 import baseStyles from '@theme/styles';
 
@@ -41,7 +39,7 @@ const LoginScreen = ({
   navigation,
   string
 }: LoginScreenProps) => {
-  const [, setToken] = useStorage<string>(tokenStorageKey, '');
+  const { setAuthData } = useAuth();
 
   const [getUserByUsername] = useGetUserByUsernameLazyQuery();
 
@@ -53,23 +51,33 @@ const LoginScreen = ({
     });
 
     if (data?.getUser) {
-      auth()
-        .signInWithEmailAndPassword(data.getUser.email, values.password)
-        .then(() => auth().currentUser?.getIdToken())
-        .then(token => setToken(token || ''))
-        .catch(err => {
-          if (err.code === FirebaseAuthErrors.WrongPassword) {
-            return ToastService.error({
-              title: string.authorization.errors.title,
-              message: string.authorization.errors.wrongPassword
-            });
-          }
+      try {
+        await auth().signInWithEmailAndPassword(data.getUser.email, values.password);
+        const token = await auth().currentUser?.getIdToken();
 
-          ToastService.error({
-            title: string.common.error.title,
-            message: string.common.error.message
+        if (token) {
+          setAuthData({
+            token,
+            rememberMe: !!values.rememberMe
           });
+        }
+      } catch (err) {
+        const error = err as FirebaseAuthTypes.NativeFirebaseAuthError;
+
+        if (error.code === FirebaseAuthErrors.WrongPassword) {
+          return ToastService.error({
+            title: string.authorization.errors.title,
+            message: string.authorization.errors.wrongPassword
+          });
+        }
+
+        // eslint-disable-next-line no-console
+        console.error(err);
+        ToastService.error({
+          title: string.common.error.title,
+          message: string.common.error.message
         });
+      }
     }
   };
 

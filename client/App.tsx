@@ -13,19 +13,30 @@ import NavigationContainer from '@navigation/NavigationContainer';
 
 import ToastService from '@services/toastService';
 
+import useAuth from '@hooks/useAuth';
+
 import { I18Provider } from '@i18n';
 
 const App = () => {
   const toastRef = useRef<ToastHandle>(null);
 
-  useEffect(() => ToastService.init(toastRef), []);
+  const { isAuthorized, listenAuthChange, prepareToListenAuthChange } = useAuth();
+
+  useEffect(listenAuthChange, [listenAuthChange]);
+
+  useEffect(() => {
+    prepareToListenAuthChange();
+    ToastService.init(toastRef);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <I18Provider>
       <ToastProvider ref={toastRef}>
         <ApolloProvider client={client}>
           <NavigationContainer>
-            <AppStackNavigator isAuthorized={false} />
+            <AppStackNavigator isAuthorized={!!isAuthorized} />
           </NavigationContainer>
         </ApolloProvider>
       </ToastProvider>
