@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import { useEffect, useRef } from 'react';
 
 import { ApolloProvider } from '@apollo/client';
+import SplashScreen from 'react-native-splash-screen';
 
 import client from '@client';
 
@@ -22,6 +23,8 @@ const App = () => {
 
   const { isAuthorized, listenAuthChange, prepareToListenAuthChange } = useAuth();
 
+  const isAppReady = isAuthorized !== null;
+
   useEffect(listenAuthChange, [listenAuthChange]);
 
   useEffect(() => {
@@ -31,12 +34,18 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (isAppReady) {
+      SplashScreen.hide();
+    }
+  }, [isAppReady]);
+
   return (
     <I18Provider>
       <ToastProvider ref={toastRef}>
         <ApolloProvider client={client}>
           <NavigationContainer>
-            <AppStackNavigator isAuthorized={!!isAuthorized} />
+            {isAppReady && <AppStackNavigator isAuthorized={!!isAuthorized} />}
           </NavigationContainer>
         </ApolloProvider>
       </ToastProvider>
