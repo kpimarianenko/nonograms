@@ -71,5 +71,8 @@
   },
   "home": {
     "title": "Nonograms"
+  },
+  "settings": {
+    "title": "Settings"
   }
 }

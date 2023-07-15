@@ -4,7 +4,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 export enum RouteName {
   Login = 'Login',
   Register = 'Register',
-  Home = 'Home'
+  Home = 'Home',
+  Settings = 'Settings'
 }
 
 export type ScreenProps<T extends RouteName> = {
